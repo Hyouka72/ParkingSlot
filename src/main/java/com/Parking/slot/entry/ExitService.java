@@ -28,6 +28,6 @@ public class ExitService {
         exit.setExitTime(LocalDateTime.now());
         exit.setActive(false);
         repo.save(exit);
-        publisher.publishEvent(new VehicleExitedEvent(vehicleNumber, exit.getExitTime()));
+        publisher.publishEvent(new VehicleExitedEvent(vehicleNumber, exit.getExitTime(), exit.getEntryTime()));
     }
 }
