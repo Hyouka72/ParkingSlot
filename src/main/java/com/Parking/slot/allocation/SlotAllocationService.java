@@ -29,5 +29,17 @@ public class SlotAllocationService {
     }
 
     @EventListener
-    public void handleVehicleExit(VehicleExitedEvent event) {}
+    public void handleVehicleExit(VehicleExitedEvent event) {
+        slotRepository.findByVehicleNumber(event.vehicleNumber())
+                .ifPresentOrElse(
+                        slot->{
+                            slot.setAvailable(true);
+                            slot.setVehicleNumber(null);
+                            slotRepository.save(slot);
+                            System.out.println("Deallocated Slot: " + slot+ " to vehicle: " + event.vehicleNumber());
+                        }
+                ,()->{
+            throw new RuntimeException("not available");
+        });
+    }
 }
