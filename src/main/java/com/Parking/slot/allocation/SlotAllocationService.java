@@ -21,6 +21,8 @@ public class SlotAllocationService {
         );
         slot.setAvailable(false);
         slot.setVehicleNumber(event.vehicleNumber());
+        slotRepository.save(slot);
+        System.out.println("Allocated Slot: " + slot+ " to vehicle: " + event.vehicleNumber());
         //then update the slot db
 
     }
