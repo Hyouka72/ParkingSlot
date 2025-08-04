@@ -1,6 +1,7 @@
 package com.Parking.slot.allocation;
 
 import com.Parking.slot.event.VehicleEnteredEvent;
+import com.Parking.slot.event.VehicleExitedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
@@ -26,4 +27,7 @@ public class SlotAllocationService {
         //then update the slot db
 
     }
+
+    @EventListener
+    public void handleVehicleExit(VehicleExitedEvent event) {}
 }
